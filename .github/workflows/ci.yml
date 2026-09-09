@@ -4,7 +4,8 @@ on: [push, pull_request]
 jobs:
   test:
     strategy:
-      matrix:
+        fail-fast: false
+        matrix:
         os: [ubuntu-latest, windows-latest]
         python-version: ["3.10", "3.12"]
     runs-on: ${{ matrix.os }}
