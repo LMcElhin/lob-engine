@@ -216,3 +216,26 @@ disagree, rather than showing a headline return.
 ## License
 
 MIT.
+
+
+## Native performance
+
+Synthetic insertion benchmark on Windows x64.
+
+**Hardware**
+- CPU: Intel Core i7-12700H
+- Compiler: MSVC 19.40.33808.0
+- Toolchain: Visual Studio 2022
+- Build: Release
+- CMake: 4.4.3
+
+| Workload | Median throughput |
+| ---: | ---: |
+| 1,000,000 events | 2.91M events/s |
+| 10,000,000 events | 1.99M events/s |
+
+Each workload was run five times and the median throughput is reported.
+
+The v0.1 benchmark is insertion-heavy and includes synthetic event generation.
+Later versions add pre-generated mixed-event workloads and deterministic
+historical replay benchmarks.
