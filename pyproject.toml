@@ -1,0 +1,40 @@
+[build-system]
+requires = ["scikit-build-core>=0.10", "pybind11>=2.13"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "lob-engine"
+version = "0.1.0"
+description = "C++20 limit-order-book engine with Python bindings, research features and paper backtesting."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Luke McElhinney"}]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.8", "mypy>=1.13"]
+
+[project.scripts]
+lob-demo = "loblab.cli:main"
+
+[tool.scikit-build]
+wheel.packages = ["src/loblab"]
+cmake.version = ">=3.20"
+build-dir = "build/{wheel_tag}"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+packages = ["loblab"]
