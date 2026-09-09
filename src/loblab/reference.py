@@ -4,7 +4,6 @@ from collections import deque
 from dataclasses import dataclass
 from enum import Enum
 from math import isfinite
-from typing import Deque
 
 
 class RefSide(str, Enum):
@@ -42,8 +41,8 @@ class PythonOrderBook:
         if not isfinite(tick_size) or tick_size <= 0:
             raise ValueError("tick_size must be finite and > 0")
         self.tick_size = tick_size
-        self.bids: dict[int, Deque[RefOrder]] = {}
-        self.asks: dict[int, Deque[RefOrder]] = {}
+        self.bids: dict[int, deque[RefOrder]] = {}
+        self.asks: dict[int, deque[RefOrder]] = {}
         self.orders: dict[int, RefOrder] = {}
 
     def to_ticks(self, price: float) -> int:
@@ -140,7 +139,9 @@ class PythonOrderBook:
             while remaining and level:
                 maker = level[0]
                 executed = min(remaining, maker.quantity)
-                trades.append(RefTrade(maker.order_id, taker_id, RefSide.BUY, best, executed, timestamp_ns))
+                trades.append(
+                    RefTrade(maker.order_id, taker_id, RefSide.BUY, best, executed, timestamp_ns)
+                )
                 remaining -= executed
                 maker.quantity -= executed
                 if maker.quantity == 0:
@@ -166,7 +167,9 @@ class PythonOrderBook:
             while remaining and level:
                 maker = level[0]
                 executed = min(remaining, maker.quantity)
-                trades.append(RefTrade(maker.order_id, taker_id, RefSide.SELL, best, executed, timestamp_ns))
+                trades.append(
+                    RefTrade(maker.order_id, taker_id, RefSide.SELL, best, executed, timestamp_ns)
+                )
                 remaining -= executed
                 maker.quantity -= executed
                 if maker.quantity == 0:

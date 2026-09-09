@@ -1,4 +1,5 @@
 import pytest
+
 from loblab import OrderBook, Side, features_from_book
 
 

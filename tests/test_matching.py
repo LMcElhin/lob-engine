@@ -1,4 +1,5 @@
 import pytest
+
 from loblab import OrderBook, Side
 
 
@@ -19,7 +20,8 @@ def test_better_price_executes_first() -> None:
     book.add_limit(2, Side.SELL, 100.01, 10)
     trades = book.add_market(3, Side.BUY, 15)
     assert [(book.from_ticks(t.price_ticks), t.quantity) for t in trades] == [
-        (100.01, 10), (100.02, 5)
+        (100.01, 10),
+        (100.02, 5),
     ]
 
 
