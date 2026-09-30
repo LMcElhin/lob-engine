@@ -17,6 +17,7 @@ dev = ["pytest>=8", "ruff>=0.8", "mypy>=1.13"]
 
 [project.scripts]
 lob-demo = "loblab.cli:main"
+lob-replay = "loblab.replay:main"
 
 [tool.scikit-build]
 wheel.packages = ["src/loblab"]

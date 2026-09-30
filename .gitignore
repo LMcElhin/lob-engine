@@ -13,3 +13,5 @@ dist/
 *.egg-info/
 .vscode/
 .idea/
+/build-native/
+/replay-output/
